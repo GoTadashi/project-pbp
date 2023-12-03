@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
+|
+*/
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::post('/action-login', [App\Http\Controllers\controller_api_login::class, 'actionLogin']);
+
+Route::post('/action-register', [App\Http\Controllers\controller_api_register::class, 'actionRegister']);
+
+Route::get('/get-siswa', [controller_siswa::class, 'getSiswa']);
+Route::post('/add-siswa', [controller_siswa::class, 'addSiswa']);
+Route::post('/update-siswa', [controller_siswa::class, 'updateSiswa']);
+Route::post('/delete-siswa', [controller_siswa::class, 'deleteSiswa']);
+
+Route::get('/get-guru', [controller_guru::class, 'getGuru']);
+Route::post('/add-guru', [controller_guru::class, 'addGuru']);
+Route::post('/update-guru', [controller_guru::class, 'updateGuru']);
+Route::post('/delete-guru', [controller_guru::class, 'deleteGuru']);
+
+Route::get('/get-matapelajaran', [controller_matapelajaran::class, 'getMatapelajaran']);
+Route::post('/add-matapelajaran', [controller_matapelajaran::class, 'addMatapelajaran']);
+Route::post('/update-matapelajaran', [controller_matapelajaran::class, 'updateMatapelajaran']);
+Route::post('/delete-matapelajaran', [controller_matapelajaran::class, 'deleteMatapelajaran']);
