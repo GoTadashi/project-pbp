@@ -22,15 +22,15 @@ Route::post('/action-login', [App\Http\Controllers\controller_api_login::class, 
 
 Route::post('/action-register', [App\Http\Controllers\controller_api_register::class, 'actionRegister']);
 
-Route::get('/get-siswa', [controller_siswa::class, 'getSiswa']);
-Route::post('/add-siswa', [controller_siswa::class, 'addSiswa']);
-Route::post('/update-siswa', [controller_siswa::class, 'updateSiswa']);
-Route::post('/delete-siswa', [controller_siswa::class, 'deleteSiswa']);
+Route::get('/get-siswa', [App\Http\Controllers\controller_api_siswa::class, 'getSiswa']);
+Route::post('/add-siswa', [App\Http\Controllers\controller_api_siswa::class, 'addSiswa']);
+Route::post('/update-siswa', [App\Http\Controllers\controller_api_siswa::class, 'updateSiswa']);
+Route::get('/delete-siswa', [App\Http\Controllers\controller_api_siswa::class, 'deleteSiswa']);
 
-Route::get('/get-guru', [controller_guru::class, 'getGuru']);
-Route::post('/add-guru', [controller_guru::class, 'addGuru']);
-Route::post('/update-guru', [controller_guru::class, 'updateGuru']);
-Route::post('/delete-guru', [controller_guru::class, 'deleteGuru']);
+Route::get('/get-guru', [App\Http\Controllers\controller_api_guru::class, 'getGuru']);
+Route::post('/add-guru', [App\Http\Controllers\controller_api_guru::class, 'addGuru']);
+Route::post('/update-guru', [App\Http\Controllers\controller_api_guru::class, 'updateGuru']);
+Route::post('/delete-guru', [App\Http\Controllers\controller_api_guru::class, 'deleteGuru']);
 
 Route::get('/get-matapelajaran', [controller_matapelajaran::class, 'getMatapelajaran']);
 Route::post('/add-matapelajaran', [controller_matapelajaran::class, 'addMatapelajaran']);
