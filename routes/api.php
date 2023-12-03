@@ -32,7 +32,7 @@ Route::post('/add-guru', [App\Http\Controllers\controller_api_guru::class, 'addG
 Route::post('/update-guru', [App\Http\Controllers\controller_api_guru::class, 'updateGuru']);
 Route::post('/delete-guru', [App\Http\Controllers\controller_api_guru::class, 'deleteGuru']);
 
-Route::get('/get-matapelajaran', [controller_matapelajaran::class, 'getMatapelajaran']);
-Route::post('/add-matapelajaran', [controller_matapelajaran::class, 'addMatapelajaran']);
-Route::post('/update-matapelajaran', [controller_matapelajaran::class, 'updateMatapelajaran']);
-Route::post('/delete-matapelajaran', [controller_matapelajaran::class, 'deleteMatapelajaran']);
+Route::get('/get-matapelajaran', [App\Http\Controllers\controller_api_matapelajaran::class, 'getMatapelajaran']);
+Route::post('/add-matapelajaran', [App\Http\Controllers\controller_api_matapelajaran::class, 'addMatapelajaran']);
+Route::post('/update-matapelajaran', [App\Http\Controllers\controller_api_matapelajaran::class, 'updateMatapelajaran']);
+Route::post('/delete-matapelajaran', [App\Http\Controllers\controller_api_matapelajaran::class, 'deleteMatapelajaran']);
