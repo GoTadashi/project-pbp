@@ -72,30 +72,33 @@ class controller_api_raport extends Controller
     {
         try {
             $req->validate([
-                'semester' => 'required',
-                'kelas' => 'required|max:50',
-                'id_siswa' => 'required|exists:siswa,nis',
-                'id_guru' => 'required|exists:guru,id_guru',
+                'nilai' => 'required|numeric', // Add validation rules for other fields
+                'predikat' => 'required|string',
+                'deskripsi' => 'required|string',
+                'id_matapelajaran' => 'required|exists:matapelajaran,id_matapelajaran',
+                'id_raport' => 'required|exists:raport,id_raport',
             ]);
 
             model_detailraport::create([
-                'semester' => $req->semester,
-                'kelas' => $req->kelas,
-                'id_siswa' => $req->id_siswa,
-                'id_guru' => $req->id_guru,
+                'nilai' => $req->nilai,
+                'predikat' => $req->predikat,
+                'deskripsi' => $req->deskripsi,
+                'id_matapelajaran' => $req->id_matapelajaran,
+                'id_raport' => $req->id_raport,
             ]);
 
             return response()->json([
                 'status' => 'SUCCESS',
-                'message' => 'Data Raport Berhasil Disimpan',
+                'message' => 'Data Detail Raport Berhasil Disimpan',
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'ERROR',
-                'message' => 'Gagal menyimpan data raport: ' . $e->getMessage(),
+                'message' => 'Gagal menyimpan data detail raport: ' . $e->getMessage(),
             ], 500);
         }
     }
+
 
     public function deleteRaport(Request $req)
     {
