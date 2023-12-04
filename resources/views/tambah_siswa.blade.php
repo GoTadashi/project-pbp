@@ -10,9 +10,6 @@
 
     <form action="{{ route('siswa.add') }}" method="post">
         @csrf
-        <label for="nis">NIS:</label>
-        <input type="text" name="nis" required><br>
-
         <label for="nis">NISN:</label>
         <input type="text" name="nisn" required><br>
         
