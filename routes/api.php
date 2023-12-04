@@ -25,14 +25,14 @@ Route::post('/action-register', [App\Http\Controllers\controller_api_register::c
 Route::get('/get-siswa', [App\Http\Controllers\controller_api_siswa::class, 'getSiswa']);
 Route::post('/add-siswa', [App\Http\Controllers\controller_api_siswa::class, 'addSiswa']);
 Route::post('/update-siswa', [App\Http\Controllers\controller_api_siswa::class, 'updateSiswa']);
-Route::get('/delete-siswa', [App\Http\Controllers\controller_api_siswa::class, 'deleteSiswa']);
+Route::get('/delete-siswa/{id_siswa}', [App\Http\Controllers\controller_api_siswa::class, 'deleteSiswa']);
 
 Route::get('/get-guru', [App\Http\Controllers\controller_api_guru::class, 'getGuru']);
 Route::post('/add-guru', [App\Http\Controllers\controller_api_guru::class, 'addGuru']);
 Route::post('/update-guru', [App\Http\Controllers\controller_api_guru::class, 'updateGuru']);
-Route::post('/delete-guru', [App\Http\Controllers\controller_api_guru::class, 'deleteGuru']);
+Route::post('/delete-guru/{id_guru}', [App\Http\Controllers\controller_api_guru::class, 'deleteGuru']);
 
 Route::get('/get-matapelajaran', [App\Http\Controllers\controller_api_matapelajaran::class, 'getMatapelajaran']);
 Route::post('/add-matapelajaran', [App\Http\Controllers\controller_api_matapelajaran::class, 'addMatapelajaran']);
 Route::post('/update-matapelajaran', [App\Http\Controllers\controller_api_matapelajaran::class, 'updateMatapelajaran']);
-Route::post('/delete-matapelajaran', [App\Http\Controllers\controller_api_matapelajaran::class, 'deleteMatapelajaran']);
+Route::post('/delete-matapelajaran/{id_matapelajaran}', [App\Http\Controllers\controller_api_matapelajaran::class, 'deleteMatapelajaran']);

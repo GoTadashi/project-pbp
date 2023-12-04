@@ -10,7 +10,7 @@ class controller_api_guru extends Controller
     public function getGuru()
     {
         try {
-            $query = model_guru::select('id_guru', 'nip', 'nama')->get();
+            $query = model_guru::select('id_guru', 'nip', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')->get();
             return response()->json($query, 200, array(), JSON_PRETTY_PRINT);
         } catch (\Exception $e) {
             return response()->json([
@@ -64,19 +64,37 @@ class controller_api_guru extends Controller
     public function updateGuru(Request $req)
     {
         try {
-            $update = model_guru::where('id_guru', $req->id)->update([
+            // Pastikan $req->id ada
+            $id_guru = $req->id;
+    
+            // Validasi data yang diterima dari request sesuai dengan aturan yang dibutuhkan
+            $req->validate([
+                'nip' => 'required',
+                'nama' => 'required',
+                'tempat_lahir' => 'required',
+                'tanggal_lahir' => 'required',
+                'jenis_kelamin' => 'required',
+            ]);
+    
+            // Perbarui data guru
+            $updatedRows = model_guru::where('id_guru', $id_guru)->update([
                 'nip' => $req->nip,
                 'nama' => $req->nama,
                 'tempat_lahir' => $req->tempat_lahir,
                 'tanggal_lahir' => $req->tanggal_lahir,
                 'jenis_kelamin' => $req->jenis_kelamin,
             ]);
-
-            if ($update) {
+    
+            if ($updatedRows > 0) {
                 return response()->json([
                     'status' => 'SUCCESS',
                     'message' => 'Data Berhasil Diubah',
                 ], 200);
+            } else {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => 'Data guru tidak ditemukan atau tidak ada perubahan',
+                ], 404);
             }
         } catch (\Exception $e) {
             return response()->json([
@@ -85,4 +103,5 @@ class controller_api_guru extends Controller
             ], 500);
         }
     }
+    
 }
