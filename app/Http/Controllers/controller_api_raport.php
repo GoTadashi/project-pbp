@@ -14,22 +14,6 @@ class controller_api_raport extends Controller
         return response()->json($raport, 200);
     }
 
-    public function getDetailRaport()
-    {
-        $detailraport = model_detailraport::select('id_raport', 'id_siswa', 'id_guru', 'semester', 'kelas')->get();
-        return response()->json($detailraport, 200);
-        try {
-            $raports = model_raport::select('id_raport', 'semester', 'kelas', 'id_siswa', 'id_guru')->get();
-            return response()->json($raports, 200);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'ERROR',
-                'message' => 'Gagal mengambil data raport: ' . $e->getMessage(),
-            ], 500);
-        }
-    }
-
-
     public function addRaport(Request $req)
     {
         try {
