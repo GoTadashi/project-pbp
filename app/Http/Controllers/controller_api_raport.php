@@ -72,21 +72,21 @@ class controller_api_raport extends Controller
     {
         try {
             $req->validate([
-                'nilai' => 'required|numeric', // Add validation rules for other fields
-                'predikat' => 'required|string',
-                'deskripsi' => 'required|string',
+                'nilai' => 'required',
+                'predikat' => 'required',
+                'deskripsi' => 'required',
                 'id_matapelajaran' => 'required|exists:matapelajaran,id_matapelajaran',
                 'id_raport' => 'required|exists:raport,id_raport',
             ]);
-
+    
             model_detailraport::create([
                 'nilai' => $req->nilai,
                 'predikat' => $req->predikat,
                 'deskripsi' => $req->deskripsi,
                 'id_matapelajaran' => $req->id_matapelajaran,
                 'id_raport' => $req->id_raport,
-            ]);            
-
+            ]);
+    
             return response()->json([
                 'status' => 'SUCCESS',
                 'message' => 'Data Detail Raport Berhasil Disimpan',
@@ -98,7 +98,7 @@ class controller_api_raport extends Controller
             ], 500);
         }
     }
-
+    
 
     public function deleteRaport(Request $req)
     {
