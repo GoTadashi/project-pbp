@@ -68,6 +68,35 @@ class controller_api_raport extends Controller
         }
     }
 
+    public function addDetailRaport(Request $req)
+    {
+        try {
+            $req->validate([
+                'semester' => 'required',
+                'kelas' => 'required|max:50',
+                'id_siswa' => 'required|exists:siswa,nis',
+                'id_guru' => 'required|exists:guru,id_guru',
+            ]);
+
+            model_detailraport::create([
+                'semester' => $req->semester,
+                'kelas' => $req->kelas,
+                'id_siswa' => $req->id_siswa,
+                'id_guru' => $req->id_guru,
+            ]);
+
+            return response()->json([
+                'status' => 'SUCCESS',
+                'message' => 'Data Raport Berhasil Disimpan',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Gagal menyimpan data raport: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function deleteRaport(Request $req)
     {
         try {
