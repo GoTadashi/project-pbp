@@ -46,12 +46,17 @@ class controller_api_guru extends Controller
     public function deleteGuru(Request $req)
     {
         try {
-            $delete = model_guru::where('id_guru', $req->id)->delete();
+            $delete = model_guru::where('id_guru', $req->id_guru)->delete();
             if ($delete) {
                 return response()->json([
                     'status' => 'SUCCESS',
-                    'message' => 'Data Berhasil Dihapus',
+                    'message' => 'Data Guru Berhasil Dihapus',
                 ], 200);
+            } else {
+                return response()->json([
+                    'status' => 'FAILED',
+                    'message' => 'ID Guru tidak ditemukan',
+                ], 404);
             }
         } catch (\Exception $e) {
             return response()->json([
@@ -66,7 +71,7 @@ class controller_api_guru extends Controller
         try {
             // Pastikan $req->id ada
             $id_guru = $req->id;
-    
+
             // Validasi data yang diterima dari request sesuai dengan aturan yang dibutuhkan
             $req->validate([
                 'nip' => 'required',
@@ -75,7 +80,7 @@ class controller_api_guru extends Controller
                 'tanggal_lahir' => 'required',
                 'jenis_kelamin' => 'required',
             ]);
-    
+
             // Perbarui data guru
             $updatedRows = model_guru::where('id_guru', $id_guru)->update([
                 'nip' => $req->nip,
@@ -84,7 +89,7 @@ class controller_api_guru extends Controller
                 'tanggal_lahir' => $req->tanggal_lahir,
                 'jenis_kelamin' => $req->jenis_kelamin,
             ]);
-    
+
             if ($updatedRows > 0) {
                 return response()->json([
                     'status' => 'SUCCESS',
@@ -103,5 +108,4 @@ class controller_api_guru extends Controller
             ], 500);
         }
     }
-    
 }
