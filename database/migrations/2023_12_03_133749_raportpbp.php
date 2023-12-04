@@ -13,7 +13,7 @@ return new class extends Migration
     {
         // Tabel siswa
         Schema::create('siswa', function (Blueprint $table) {
-            $table->integer('nis')->primary();
+            $table->increments('nis');
             $table->string('nisn')->unique();
             $table->string('nama');
             $table->string('tempat_lahir');
@@ -35,7 +35,7 @@ return new class extends Migration
         Schema::create('matapelajaran', function (Blueprint $table) {
             $table->increments('id_matapelajaran');
             $table->string('nama_matapelajaran');
-            $table->unsignedInteger('id_guru');
+            $table->unsignedInteger('id_guru')->nullable();
             $table->foreign('id_guru')->references('id_guru')->on('guru')->onDelete('cascade');
         });
 
