@@ -25,7 +25,8 @@ Route::post('/action-register', [App\Http\Controllers\controller_api_register::c
 Route::get('/get-siswa', [App\Http\Controllers\controller_api_siswa::class, 'getSiswa']);
 Route::post('/add-siswa', [App\Http\Controllers\controller_api_siswa::class, 'addSiswa']);
 Route::post('/update-siswa', [App\Http\Controllers\controller_api_siswa::class, 'updateSiswa']);
-Route::get('/delete-siswa/{id_siswa}', [App\Http\Controllers\controller_api_siswa::class, 'deleteSiswa']);
+Route::get('/delete-siswa/{nis}', [App\Http\Controllers\controller_api_siswa::class, 'deleteSiswa']);
+
 
 Route::get('/get-guru', [App\Http\Controllers\controller_api_guru::class, 'getGuru']);
 Route::post('/add-guru', [App\Http\Controllers\controller_api_guru::class, 'addGuru']);
