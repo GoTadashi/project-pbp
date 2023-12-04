@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\model_raport;
 
-class RaportController extends Controller
+class controller_api_raport extends Controller
 {
     public function getRaport()
     {
