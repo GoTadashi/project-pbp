@@ -58,9 +58,6 @@ return new class extends Migration
             $table->string('deskripsi');
             $table->unsignedInteger('id_matapelajaran'); // Ubah tipe data menjadi integer
             $table->unsignedInteger('id_raport');
-            $table->unsignedInteger('id_siswa');
-            $table->integer('semester');
-            $table->string('kelas', 50);
             $table->foreign('id_matapelajaran')->references('id_matapelajaran')->on('matapelajaran')->onDelete('cascade');
             $table->foreign('id_raport')->references('id_raport')->on('raport')->onDelete('cascade');
         });
