@@ -9,51 +9,79 @@ class controller_api_siswa extends Controller
 {
     public function getSiswa()
     {
-        $query = model_siswa::select('nis', 'nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')->get();
-        return response()->json($query, 200, array(), JSON_PRETTY_PRINT);
+        try {
+            $query = model_siswa::select('nis', 'nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')->get();
+            return response()->json($query, 200, array(), JSON_PRETTY_PRINT);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Gagal mengambil data siswa: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function addSiswa(Request $req)
     {
-        model_siswa::insert([
-            'nis' => $req->nis,
-            'nisn' => $req->nisn,
-            'nama' => $req->nama,
-            'tempat_lahir' => $req->tempat_lahir,
-            'tanggal_lahir' => $req->tanggal_lahir,
-            'jenis_kelamin' => $req->jenis_kelamin,
-        ]);
+        try {
+            model_siswa::insert([
+                'nis' => $req->nis,
+                'nisn' => $req->nisn,
+                'nama' => $req->nama,
+                'tempat_lahir' => $req->tempat_lahir,
+                'tanggal_lahir' => $req->tanggal_lahir,
+                'jenis_kelamin' => $req->jenis_kelamin,
+            ]);
 
-        return response()->json([
-            'status' => 'SUCCESS',
-            'message' => 'Data Berhasil Disimpan',
-        ], 200);
+            return response()->json([
+                'status' => 'SUCCESS',
+                'message' => 'Data Berhasil Disimpan',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Gagal menyimpan data siswa: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function deleteSiswa(Request $req)
     {
-        $delete = model_siswa::where('nis', $req->nis)->delete();
-        if ($delete) {
+        try {
+            $delete = model_siswa::where('nis', $req->nis)->delete();
+            if ($delete) {
+                return response()->json([
+                    'status' => 'SUCCESS',
+                    'message' => 'Data Berhasil Dihapus',
+                ], 200);
+            }
+        } catch (\Exception $e) {
             return response()->json([
-                'status' => 'SUCCESS',
-                'message' => 'Data Berhasil Dihapus',
-            ], 200);
+                'status' => 'ERROR',
+                'message' => 'Gagal menghapus data siswa: ' . $e->getMessage(),
+            ], 500);
         }
     }
 
     public function updateSiswa(Request $req)
     {
-        $update = model_siswa::where('nis', $req->nis)->update([
-            'nama' => $req->nama,
-            'tempat_lahir' => $req->tempat_lahir,
-            'tanggal_lahir' => $req->tanggal_lahir,
-            'jenis_kelamin' => $req->jenis_kelamin,
-        ]);
-        if ($update) {
+        try {
+            $update = model_siswa::where('nis', $req->nis)->update([
+                'nama' => $req->nama,
+                'tempat_lahir' => $req->tempat_lahir,
+                'tanggal_lahir' => $req->tanggal_lahir,
+                'jenis_kelamin' => $req->jenis_kelamin,
+            ]);
+            if ($update) {
+                return response()->json([
+                    'status' => 'SUCCESS',
+                    'message' => 'Data Berhasil Diubah',
+                ], 200);
+            }
+        } catch (\Exception $e) {
             return response()->json([
-                'status' => 'SUCCESS',
-                'message' => 'Data Berhasil Diubah',
-            ], 200);
+                'status' => 'ERROR',
+                'message' => 'Gagal mengubah data siswa: ' . $e->getMessage(),
+            ], 500);
         }
     }
 }

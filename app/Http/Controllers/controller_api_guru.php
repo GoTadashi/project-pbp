@@ -69,10 +69,8 @@ class controller_api_guru extends Controller
     public function updateGuru(Request $req)
     {
         try {
-            // Pastikan $req->id ada
             $id_guru = $req->id_guru;
 
-            // Validasi data yang diterima dari request sesuai dengan aturan yang dibutuhkan
             $req->validate([
                 'nip' => 'required',
                 'nama' => 'required',
@@ -81,7 +79,6 @@ class controller_api_guru extends Controller
                 'jenis_kelamin' => 'required',
             ]);
 
-            // Perbarui data guru
             $updatedRows = model_guru::where('id_guru', $id_guru)->update([
                 'nip' => $req->nip,
                 'nama' => $req->nama,
