@@ -52,9 +52,10 @@ return new class extends Migration
 
         // Tabel detail_raport
         Schema::create('detail_raport', function (Blueprint $table) {
-            $table->float('Nilai');
-            $table->string('Predikat');
-            $table->string('Deskripsi');
+            $table->increments('id_detail');
+            $table->float('nilai');
+            $table->string('predikat');
+            $table->string('deskripsi');
             $table->unsignedInteger('id_matapelajaran'); // Ubah tipe data menjadi integer
             $table->unsignedInteger('id_raport');
             $table->unsignedInteger('id_siswa');
