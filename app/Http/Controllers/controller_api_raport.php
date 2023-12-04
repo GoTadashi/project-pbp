@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use App\Models\model_detailraport;
-=======
->>>>>>> 99694dc4ac0ba133f28737592826b3a1e4a5a543
 use App\Models\model_raport;
 
 class controller_api_raport extends Controller
 {
     public function getRaport()
     {
-<<<<<<< HEAD
         $raport = model_raport::select('id_raport', 'id_siswa', 'id_guru', 'semester', 'kelas')->get();
         return response()->json($raport, 200);
     }
@@ -22,7 +18,7 @@ class controller_api_raport extends Controller
     {
         $detailraport = model_detailraport::select('id_raport', 'id_siswa', 'id_guru', 'semester', 'kelas')->get();
         return response()->json($detailraport, 200);
-=======
+
         try {
             $raports = model_raport::select('id_raport', 'semester', 'kelas', 'id_siswa', 'id_guru')->get();
             return response()->json($raports, 200);
@@ -121,6 +117,5 @@ class controller_api_raport extends Controller
                 'message' => 'Gagal mengubah data raport: ' . $e->getMessage(),
             ], 500);
         }
->>>>>>> 99694dc4ac0ba133f28737592826b3a1e4a5a543
     }
 }
