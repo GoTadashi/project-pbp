@@ -27,7 +27,7 @@ Route::post('/register/action', [controller_register::class, 'actionRegister'])-
 Route::get('/', [controller_login::class, 'login'])->name('login');
 Route::post('/actionlogin', [controller_login::class, 'actionlogin'])->name('actionlogin');
 
-Route::get('/dashboard', [ControllerDashboard::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/dashboard', [controller_dashboard::class, 'index'])->name('dashboard')->middleware('auth');
 Route::get('actionlogout', [controller_login::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
 
@@ -77,4 +77,3 @@ Route::post('/tambah_matapelajaran', [controller_matapelajaran::class, 'addMatap
 Route::get('/edit-matapelajaran/{id}', [controller_matapelajaran::class, 'getById']);
 Route::post('/edit-matapelajaran', [controller_matapelajaran::class, 'update']);
 Route::post('/hapus-matapelajaran', [controller_matapelajaran::class, 'deleteMatapelajaran']);
-
