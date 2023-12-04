@@ -158,4 +158,42 @@ class controller_api_raport extends Controller
             ], 500);
         }
     }
+
+    public function updateDetailRaport(Request $req)
+    {
+        try {
+            $req->validate([
+                'nilai' => 'required',
+                'predikat' => 'required',
+                'deskripsi' => 'required',
+                'id_matapelajaran' => 'required|exists:matapelajaran,id_matapelajaran',
+                'id_raport' => 'required|exists:raport,id_raport',
+            ]);
+
+            $update = model_detailraport::where('id_detail', $req->id_raport)->update([
+                'nilai' => $req->nilai,
+                'predikat' => $req->predikat,
+                'deskripsi' => $req->deskripsi,
+                'id_matapelajaran' => $req->id_matapelajaran,
+                'id_raport' => $req->id_raport,
+            ]);
+
+            if ($update) {
+                return response()->json([
+                    'status' => 'SUCCESS',
+                    'message' => 'Data Raport Berhasil Diubah',
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => 'FAILED',
+                    'message' => 'ID Raport tidak ditemukan atau tidak ada perubahan',
+                ], 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Gagal mengubah data raport: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
 }

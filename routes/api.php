@@ -42,4 +42,5 @@ Route::get('/get-raport', [App\Http\Controllers\controller_api_raport::class, 'g
 Route::post('/add-raport', [App\Http\Controllers\controller_api_raport::class, 'addRaport']);
 Route::post('/add-detail', [App\Http\Controllers\controller_api_raport::class, 'addDetailRaport']);
 Route::post('/update-raport', [App\Http\Controllers\controller_api_raport::class, 'updateRaport']);
+Route::post('/update-detail', [App\Http\Controllers\controller_api_raport::class, 'updateDetailRaport']);
 Route::get('/delete-raport/{id_raport}', [App\Http\Controllers\controller_api_raport::class, 'deleteRaport']);
