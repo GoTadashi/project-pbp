@@ -9,10 +9,9 @@ class controller_api_matapelajaran extends Controller
 {
     public function getMatapelajaran()
     {
-<<<<<<< HEAD
         $matapelajaran = model_matapelajaran::select('id_matapelajaran', 'nama_matapelajaran', 'id_guru')->get();
         return response()->json($matapelajaran, 200, array(), JSON_PRETTY_PRINT);
-=======
+
         try {
             $matapelajaran = model_matapelajaran::select('id_matapelajaran', 'nama_matapelajaran', 'id_guru')->get();
             return response()->json($matapelajaran, 200);
@@ -22,7 +21,6 @@ class controller_api_matapelajaran extends Controller
                 'message' => 'Gagal mengambil data matapelajaran: ' . $e->getMessage(),
             ], 500);
         }
->>>>>>> 99694dc4ac0ba133f28737592826b3a1e4a5a543
     }
 
     public function addMatapelajaran(Request $req)
