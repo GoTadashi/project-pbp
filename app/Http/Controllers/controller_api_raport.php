@@ -123,6 +123,29 @@ class controller_api_raport extends Controller
         }
     }
 
+    public function deleteDetailRaport(Request $req)
+    {
+        try {
+            $delete = model_detailraport::where('id_detail', $req->id_detail)->delete();
+            if ($delete) {
+                return response()->json([
+                    'status' => 'SUCCESS',
+                    'message' => 'Data Raport Berhasil Dihapus',
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => 'FAILED',
+                    'message' => 'ID Raport tidak ditemukan',
+                ], 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Gagal menghapus data raport: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function updateRaport(Request $req)
     {
         try {
@@ -170,7 +193,7 @@ class controller_api_raport extends Controller
                 'id_raport' => 'required|exists:raport,id_raport',
             ]);
 
-            $update = model_detailraport::where('id_detail', $req->id_raport)->update([
+            $update = model_detailraport::where('id_detail', $req->id_detail)->update([
                 'nilai' => $req->nilai,
                 'predikat' => $req->predikat,
                 'deskripsi' => $req->deskripsi,
