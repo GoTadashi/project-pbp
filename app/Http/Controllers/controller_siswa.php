@@ -16,7 +16,6 @@ class controller_siswa extends Controller
     public function addSiswa(Request $req)
     {
         model_siswa::insert([
-            'nis' => $req->nis,
             'nisn' => $req->nisn,
             'nama' => $req->nama,
             'tempat_lahir' => $req->tempat_lahir,
