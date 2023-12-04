@@ -1,6 +1,6 @@
 <?php
 
-// ASU BAJING
+// ASU BAJING nasd
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
