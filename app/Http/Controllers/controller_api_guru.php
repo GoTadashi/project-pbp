@@ -70,7 +70,7 @@ class controller_api_guru extends Controller
     {
         try {
             // Pastikan $req->id ada
-            $id_guru = $req->id;
+            $id_guru = $req->id_guru;
 
             // Validasi data yang diterima dari request sesuai dengan aturan yang dibutuhkan
             $req->validate([
