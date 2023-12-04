@@ -28,6 +28,8 @@ class controller_api_raport extends Controller
                 ->join('guru', 'guru.id_guru', '=', 'raport.id_guru')
                 ->join('detail_raport', 'raport.id_raport', '=', 'detail_raport.id_raport')
                 ->join('matapelajaran', 'matapelajaran.id_matapelajaran', '=', 'detail_raport.id_matapelajaran')
+                ->orderBy('raport.kelas')
+                ->orderBy('raport.semester')
                 ->get();
 
             return response()->json($raports, 200);
