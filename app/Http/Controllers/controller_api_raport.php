@@ -11,7 +11,7 @@ class controller_api_raport extends Controller
     public function getRaport()
     {
         try {
-            $raports = Raport::all();
+            $raports = model_raport::select('id_raport', 'semester', 'kelas', 'id_siswa', 'id_guru')->get();
             return response()->json($raports, 200);
         } catch (\Exception $e) {
             return response()->json([
