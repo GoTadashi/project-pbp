@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label for="id_guru">ID Guru:</label>
-                <input type="text" name="id_guru" class="form-control" value="{{ $matapel->id_guru }}" required>
+                <input type="text" name="id_guru" class="form-control" value="{{ $matapel->id_guru }}">
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
