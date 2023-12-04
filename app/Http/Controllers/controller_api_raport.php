@@ -85,7 +85,7 @@ class controller_api_raport extends Controller
                 'deskripsi' => $req->deskripsi,
                 'id_matapelajaran' => $req->id_matapelajaran,
                 'id_raport' => $req->id_raport,
-            ]);
+            ]);            
 
             return response()->json([
                 'status' => 'SUCCESS',
