@@ -9,6 +9,9 @@ class controller_api_matapelajaran extends Controller
 {
     public function getMatapelajaran()
     {
+        $matapelajaran = model_matapelajaran::select('id_matapelajaran', 'nama_matapelajaran', 'id_guru')->get();
+        return response()->json($matapelajaran, 200, array(), JSON_PRETTY_PRINT);
+
         try {
             $matapelajaran = model_matapelajaran::select('id_matapelajaran', 'nama_matapelajaran', 'id_guru')->get();
             return response()->json($matapelajaran, 200);
