@@ -13,7 +13,7 @@ class controller_api_matapelajaran extends Controller
         return response()->json($matapelajaran, 200);
     }
 
-    public function insertMatapelajaran(Request $req)
+    public function addMatapelajaran(Request $req)
     {
         model_matapelajaran::create([
             'nama_matapelajaran' => $req->nama_matapelajaran,
