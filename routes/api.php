@@ -45,3 +45,6 @@ Route::post('/update-raport', [App\Http\Controllers\controller_api_raport::class
 Route::post('/update-detail', [App\Http\Controllers\controller_api_raport::class, 'updateDetailRaport']);
 Route::get('/delete-raport/{id_raport}', [App\Http\Controllers\controller_api_raport::class, 'deleteRaport']);
 Route::get('/delete-detail/{id_detail}', [App\Http\Controllers\controller_api_raport::class, 'deleteDetailRaport']);
+
+Route::get('/cari-siswa', [App\Http\Controllers\controller_api_cari::class, 'cariSiswa']);
+Route::get('/cari-guru', [App\Http\Controllers\controller_api_cari::class, 'cariGuru']);
