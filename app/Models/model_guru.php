@@ -11,7 +11,7 @@ class model_guru extends Model
     protected $table = 'guru';
     public $timestamps = false;
     protected $primaryKey = 'id_guru';
-    protected $fillable = ['nip', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin'];
+    protected $fillable = ['nip', 'nama','walikelas', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin'];
     
     public function matapelajaran()
     {

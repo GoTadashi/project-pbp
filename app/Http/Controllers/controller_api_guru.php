@@ -10,7 +10,7 @@ class controller_api_guru extends Controller
     public function getGuru()
     {
         try {
-            $query = model_guru::select('id_guru', 'nip', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')
+            $query = model_guru::select('id_guru', 'nip', 'nama','walikelas', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')
                 ->orderBy('id_guru')
                 ->get();
             return response()->json($query, 200, array(), JSON_PRETTY_PRINT);
@@ -28,6 +28,7 @@ class controller_api_guru extends Controller
             model_guru::create([
                 'nip' => $req->nip,
                 'nama' => $req->nama,
+                'walikelas' => $req->walikelas,
                 'tempat_lahir' => $req->tempat_lahir,
                 'tanggal_lahir' => $req->tanggal_lahir,
                 'jenis_kelamin' => $req->jenis_kelamin
@@ -76,6 +77,7 @@ class controller_api_guru extends Controller
             $req->validate([
                 'nip' => 'required',
                 'nama' => 'required',
+                'walikelas' => 'required',
                 'tempat_lahir' => 'required',
                 'tanggal_lahir' => 'required',
                 'jenis_kelamin' => 'required',
@@ -84,6 +86,7 @@ class controller_api_guru extends Controller
             $updatedRows = model_guru::where('id_guru', $id_guru)->update([
                 'nip' => $req->nip,
                 'nama' => $req->nama,
+                'walikelas' => $req->walikelas,
                 'tempat_lahir' => $req->tempat_lahir,
                 'tanggal_lahir' => $req->tanggal_lahir,
                 'jenis_kelamin' => $req->jenis_kelamin,
