@@ -10,7 +10,7 @@ class controller_api_siswa extends Controller
     public function getSiswa()
     {
         try {
-            $query = model_siswa::select('nis', 'nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin','agama','nama_orangtua')->get();
+            $query = model_siswa::select('nis', 'nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin','agama','nama_orangtua')->orderBy('nis')->get();
             return response()->json($query, 200, array(), JSON_PRETTY_PRINT);
         } catch (\Exception $e) {
             return response()->json([
