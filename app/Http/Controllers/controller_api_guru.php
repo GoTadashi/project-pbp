@@ -10,7 +10,9 @@ class controller_api_guru extends Controller
     public function getGuru()
     {
         try {
-            $query = model_guru::select('id_guru', 'nip', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')->get();
+            $query = model_guru::select('id_guru', 'nip', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')
+                ->orderBy('id_guru')
+                ->get();
             return response()->json($query, 200, array(), JSON_PRETTY_PRINT);
         } catch (\Exception $e) {
             return response()->json([
