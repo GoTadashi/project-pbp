@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
+            $table->string('agama');
+            $table->string('nama_orangtua');
         });
 
         // Tabel guru

@@ -11,7 +11,7 @@ class model_siswa extends Model
     protected $table = 'siswa';
     public $timestamps = false;
     protected $primaryKey = 'nis';
-    protected $fillable = ['nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin'];
+    protected $fillable = ['nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin','agama','nama_orangtua'];
 
     public function raport()
     {

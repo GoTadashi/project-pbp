@@ -9,7 +9,7 @@ class controller_siswa extends Controller
 {
     public function getSiswa()
     {
-        $query = model_siswa::select('nis','nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')->get();
+        $query = model_siswa::select('nis', 'nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')->get();
         return view('tampil_siswa', ['siswa' => $query]);
     }
 
@@ -34,7 +34,7 @@ class controller_siswa extends Controller
 
     public function getByIdSiswa($nis)
     {
-        $query = model_siswa::select('nis','nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')->where('nis', $nis)->get();
+        $query = model_siswa::select('nis', 'nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')->where('nis', $nis)->get();
         return view('edit_siswa', ['siswa' => $query]);
     }
 

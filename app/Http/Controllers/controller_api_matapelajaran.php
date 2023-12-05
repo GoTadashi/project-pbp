@@ -10,7 +10,9 @@ class controller_api_matapelajaran extends Controller
     public function getMatapelajaran()
     {
         try {
-            $matapelajaran = model_matapelajaran::select('id_matapelajaran', 'nama_matapelajaran', 'id_guru')->get();
+            $matapelajaran = model_matapelajaran::select('id_matapelajaran', 'nama_matapelajaran', 'id_guru')
+                ->orderBy('id_matapelajaran')
+                ->get();
             return response()->json($matapelajaran, 200);
         } catch (\Exception $e) {
             return response()->json([
