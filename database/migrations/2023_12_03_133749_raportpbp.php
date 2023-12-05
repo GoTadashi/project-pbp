@@ -28,7 +28,7 @@ return new class extends Migration
             $table->increments('id_guru');
             $table->string('nip')->unique();
             $table->string('nama');
-            $table->string('walikelas');
+            $table->string('walikelas')->nullable();
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
