@@ -14,7 +14,7 @@ class controller_api_register extends Controller
             // Validasi
             $request->validate([
                 'email' => 'required|email|unique:users',
-                'name' => 'required|unique:users',
+                'name' => 'required',
                 'password' => 'required|min:6',
                 'role' => 'required',
             ]);
