@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\model_siswa;
+use Carbon\Carbon;
 
 class controller_api_siswa extends Controller
 {
     public function getSiswa()
     {
         try {
-            $query = model_siswa::select('nis', 'nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin','agama','nama_orangtua')->orderBy('nis')->get();
+            $query = model_siswa::select('nis', 'nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'agama', 'nama_orangtua')
+                ->orderBy('nis')
+                ->get()
+                ->map(function ($siswa) {
+                    $siswa->tanggal_lahir = Carbon::parse($siswa->tanggal_lahir)->format('j F Y');
+                    return $siswa;
+                });
             return response()->json($query, 200, array(), JSON_PRETTY_PRINT);
         } catch (\Exception $e) {
             return response()->json([
@@ -30,7 +37,7 @@ class controller_api_siswa extends Controller
                 'tanggal_lahir' => $req->tanggal_lahir,
                 'jenis_kelamin' => $req->jenis_kelamin,
                 'agama' => $req->agama,
-                'nama_orangtua'=> $req->nama_orangtua
+                'nama_orangtua' => $req->nama_orangtua
             ]);
 
             return response()->json([
@@ -72,7 +79,7 @@ class controller_api_siswa extends Controller
                 'tanggal_lahir' => $req->tanggal_lahir,
                 'jenis_kelamin' => $req->jenis_kelamin,
                 'agama' => $req->agama,
-                'nama_orangtua'=> $req->nama_orangtua
+                'nama_orangtua' => $req->nama_orangtua
             ]);
             if ($update) {
                 return response()->json([
