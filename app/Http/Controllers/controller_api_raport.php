@@ -41,6 +41,29 @@ class controller_api_raport extends Controller
         }
     }
 
+    public function getRaportMain()
+    {
+        try {
+            $raports = model_raport::select(
+                'id_raport',
+                'semester',
+                'kelas',
+                'id_siswa',
+                'id_guru'
+            )
+                ->orderBy('kelas')
+                ->orderBy('semester')
+                ->get();
+
+            return response()->json($raports, 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Gagal mengambil data raport: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function addRaport(Request $req)
     {
         try {
