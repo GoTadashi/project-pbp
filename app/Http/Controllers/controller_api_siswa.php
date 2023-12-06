@@ -27,6 +27,30 @@ class controller_api_siswa extends Controller
         }
     }
 
+    public function getByIdSiswa($nis)
+    {
+        try {
+            $siswa = model_siswa::where('nis', $nis)
+                ->select('nis', 'nisn', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')
+                ->first();
+
+            if ($siswa) {
+                $siswa->tanggal_lahir = Carbon::parse($siswa->tanggal_lahir)->format('j F Y');
+                return response()->json($siswa, 200, [], JSON_PRETTY_PRINT);
+            } else {
+                return response()->json([
+                    'status' => 'NOT FOUND',
+                    'message' => 'Siswa dengan NIS ' . $nis . ' tidak ditemukan.',
+                ], 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Gagal mengambil data siswa: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function addSiswa(Request $req)
     {
         try {

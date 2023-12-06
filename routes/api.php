@@ -23,10 +23,10 @@ Route::post('/action-login', [App\Http\Controllers\controller_api_login::class, 
 Route::post('/action-register', [App\Http\Controllers\controller_api_register::class, 'actionRegister']);
 
 Route::get('/get-siswa', [App\Http\Controllers\controller_api_siswa::class, 'getSiswa']);
+Route::get('/get-siswa/{nis}', [App\Http\Controllers\controller_api_siswa::class, 'getByIdSiswa']);
 Route::post('/add-siswa', [App\Http\Controllers\controller_api_siswa::class, 'addSiswa']);
 Route::post('/update-siswa', [App\Http\Controllers\controller_api_siswa::class, 'updateSiswa']);
 Route::get('/delete-siswa/{nis}', [App\Http\Controllers\controller_api_siswa::class, 'deleteSiswa']);
-
 
 Route::get('/get-guru', [App\Http\Controllers\controller_api_guru::class, 'getGuru']);
 Route::post('/add-guru', [App\Http\Controllers\controller_api_guru::class, 'addGuru']);
