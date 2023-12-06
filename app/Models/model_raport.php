@@ -12,7 +12,7 @@ class model_raport extends Model
     public $timestamps = false;
     protected $primaryKey = 'id_raport';
     protected $fillable = ['semester', 'kelas', 'id_siswa', 'id_guru'];
-    
+
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'id_siswa', 'nis');
