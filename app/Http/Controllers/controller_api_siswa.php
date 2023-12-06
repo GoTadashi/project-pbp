@@ -54,7 +54,6 @@ class controller_api_siswa extends Controller
         }
     }
 
-
     public function addSiswa(Request $req)
     {
         try {
