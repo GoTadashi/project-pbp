@@ -47,10 +47,7 @@ return new class extends Migration
             $table->increments('id_raport');
             $table->integer('semester');
             $table->string('kelas', 50);
-            $table->unsignedInteger('id_siswa');
-            $table->unsignedInteger('id_guru');
-            $table->foreign('id_siswa')->references('nis')->on('siswa')->onDelete('cascade');
-            $table->foreign('id_guru')->references('id_guru')->on('guru')->onDelete('cascade');
+            $table->foreign('kelas')->references('kelas')->on('kelas')->onDelete('cascade');
         });
 
         // Tabel detail_raport
@@ -74,6 +71,15 @@ return new class extends Migration
             $table->string('verify_key')->nullable();
             $table->integer('active');
             $table->timestamps();
+        });;
+
+        Schema::create('kelas', function (Blueprint $table) {
+            $table->increments('id_kelas');
+            $table->string('kelas', 50);
+            $table->unsignedInteger('id_guru'); // Ubah tipe data menjadi integer
+            $table->unsignedInteger('id_siswa');
+            $table->foreign('id_guru')->references('id_guru')->on('guru')->onDelete('cascade');
+            $table->foreign('id_siswa')->references('nis')->on('siswa')->onDelete('cascade');
         });;
     }
 
