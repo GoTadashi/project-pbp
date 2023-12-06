@@ -31,14 +31,14 @@ class controller_api_siswa extends Controller
     {
         try {
             $siswa = model_siswa::where('nis', $nis)->first();
-    
+
             if ($siswa) {
                 // Format tanggal_lahir menggunakan Carbon
                 $siswa->tanggal_lahir = Carbon::parse($siswa->tanggal_lahir)->format('j F Y');
-    
+
                 // Mengambil semua kolom pada data siswa
                 $dataSiswa = $siswa->toArray();
-    
+
                 return response()->json($dataSiswa, 200, [], JSON_PRETTY_PRINT);
             } else {
                 return response()->json([
@@ -53,7 +53,7 @@ class controller_api_siswa extends Controller
             ], 500);
         }
     }
-    
+
 
     public function addSiswa(Request $req)
     {
