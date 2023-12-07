@@ -64,6 +64,33 @@ class controller_api_raport extends Controller
         }
     }
 
+    public function getRaportMainByNIS(Request $req)
+    {
+        try {
+            $raports = model_raport::where('id_siswa', $req->nis)->get();
+
+            if ($raports->isEmpty()) {
+                return response()->json([
+                    'status' => 'EMPTY',
+                    'message' => 'Raport tidak ditemukan untuk siswa dengan NIS ' . $req->nis,
+                ], 404);
+            }
+
+            return response()->json($raports, 200);
+            // } else {
+            //     return response()->json([
+            //         'status' => 'NOT FOUND',
+            //         'message' => 'Siswa dengan NIS ' . $nis . ' tidak ditemukan.',
+            //     ], 404);
+            // }
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Gagal mengambil data raport: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function addRaport(Request $req)
     {
         try {
