@@ -113,7 +113,7 @@ class controller_api_raport extends Controller
             if ($raports->isEmpty()) {
                 return response()->json([
                     'status' => 'ERROR',
-                    'message' => 'Data raport tidak ditemukan untuk detail raport : ' . $req->nis,
+                    'message' => 'Data raport tidak ditemukan untuk detail raport : ' . $req->id_detail,
                 ], 404);
             }
 
