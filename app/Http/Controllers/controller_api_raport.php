@@ -84,6 +84,48 @@ class controller_api_raport extends Controller
         }
     }
 
+    public function getRaportByDetail(Request $req)
+    {
+        try {
+            $raports = model_raport::select(
+                'raport.id_raport',
+                'raport.semester',
+                'raport.kelas',
+                'raport.id_siswa',
+                'siswa.nama as nama_siswa',
+                'raport.id_guru',
+                'guru.nama as nama_guru',
+                'detail_raport.id_detail',
+                'matapelajaran.nama_matapelajaran',
+                'detail_raport.nilai',
+                'detail_raport.predikat',
+                'detail_raport.deskripsi'
+            )
+                ->join('siswa', 'siswa.nis', '=', 'raport.id_siswa')
+                ->join('guru', 'guru.id_guru', '=', 'raport.id_guru')
+                ->join('detail_raport', 'raport.id_raport', '=', 'detail_raport.id_raport')
+                ->join('matapelajaran', 'matapelajaran.id_matapelajaran', '=', 'detail_raport.id_matapelajaran')
+                ->where('detail_raport.id_detail', $req->id_detail) // Filter berdasarkan NIS
+                ->orderBy('raport.kelas')
+                ->orderBy('raport.semester')
+                ->get();
+
+            if ($raports->isEmpty()) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => 'Data raport tidak ditemukan untuk detail raport : ' . $req->nis,
+                ], 404);
+            }
+
+            return response()->json($raports, 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Gagal mengambil data raport: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function getRaportByNISKS(Request $req)
     {
         try {
