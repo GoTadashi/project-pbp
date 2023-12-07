@@ -66,6 +66,13 @@ class controller_api_raport extends Controller
                 ->orderBy('raport.semester')
                 ->get();
 
+            if ($raports->isEmpty()) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => 'Data raport tidak ditemukan untuk NIS: ' . $req->nis,
+                ], 404);
+            }
+
             return response()->json($raports, 200);
         } catch (\Exception $e) {
             return response()->json([
