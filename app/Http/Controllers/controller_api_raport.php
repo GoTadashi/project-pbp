@@ -82,6 +82,60 @@ class controller_api_raport extends Controller
         }
     }
 
+    public function getRaportByNISKS(Request $req)
+    {
+        try {
+            $raportExists = model_raport::where('kelas', $req->kelas)
+                ->where('semester', $req->semester)
+                ->exists();
+
+            if (!$raportExists) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => 'Data raport tidak ditemukan untuk Kelas: ' . $req->kelas . ', Semester: ' . $req->semester,
+                ], 404);
+            }
+
+            $raports = model_raport::select(
+                'raport.id_raport',
+                'raport.semester',
+                'raport.kelas',
+                'raport.id_siswa',
+                'siswa.nama as nama_siswa',
+                'raport.id_guru',
+                'guru.nama as nama_guru',
+                'matapelajaran.nama_matapelajaran',
+                'detail_raport.nilai',
+                'detail_raport.predikat',
+                'detail_raport.deskripsi'
+            )
+                ->join('siswa', 'siswa.nis', '=', 'raport.id_siswa')
+                ->join('guru', 'guru.id_guru', '=', 'raport.id_guru')
+                ->join('detail_raport', 'raport.id_raport', '=', 'detail_raport.id_raport')
+                ->join('matapelajaran', 'matapelajaran.id_matapelajaran', '=', 'detail_raport.id_matapelajaran')
+                ->where('siswa.nis', $req->nis) // Filter berdasarkan NIS
+                ->where('raport.kelas', $req->kelas)
+                ->where('raport.semester', $req->semester)
+                ->orderBy('raport.kelas')
+                ->orderBy('raport.semester')
+                ->get();
+
+            if ($raports->isEmpty()) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => 'Data raport tidak ditemukan untuk NIS: ' . $req->nis . ', Kelas: ' . $req->kelas . ', Semester: ' . $req->semester,
+                ], 404);
+            }
+
+            return response()->json($raports, 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Gagal mengambil data raport: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function getRaportMain()
     {
         try {
