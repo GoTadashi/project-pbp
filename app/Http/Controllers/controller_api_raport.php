@@ -93,7 +93,7 @@ class controller_api_raport extends Controller
                 return response()->json([
                     'status' => 'ERROR',
                     'message' => 'Data raport tidak ditemukan untuk Kelas: ' . $req->kelas . ', Semester: ' . $req->semester,
-                ], 404);
+                ], 404, [], JSON_PRETTY_PRINT);
             }
 
             $raports = model_raport::select(
@@ -124,15 +124,15 @@ class controller_api_raport extends Controller
                 return response()->json([
                     'status' => 'ERROR',
                     'message' => 'Data raport tidak ditemukan untuk NIS: ' . $req->nis . ', Kelas: ' . $req->kelas . ', Semester: ' . $req->semester,
-                ], 404);
+                ], 404, [], JSON_PRETTY_PRINT);
             }
 
-            return response()->json($raports, 200);
+            return response()->json($raports, 200, [], JSON_PRETTY_PRINT);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'ERROR',
                 'message' => 'Gagal mengambil data raport: ' . $e->getMessage(),
-            ], 500);
+            ], 500, [], JSON_PRETTY_PRINT);
         }
     }
 
