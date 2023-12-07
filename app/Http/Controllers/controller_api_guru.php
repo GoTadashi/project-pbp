@@ -23,21 +23,21 @@ class controller_api_guru extends Controller
     }
 
     public function getByIdGuru($id)
-{
-    try {
-        $guru = model_guru::select('id_guru', 'nip', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')
-            ->where('id_guru', $id)
-            ->first();
-
-        if (!$guru) {
-            return response()->json(['error' => 'Guru not found'], 404);
+    {
+        try {
+            $guru = model_guru::select('id_guru', 'nip', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin')
+                ->where('id_guru', $id)
+                ->first();
+    
+            if (!$guru) {
+                return response()->json(['error' => 'Guru not found'], 404);
+            }
+    
+            return response()->json($guru, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Internal Server Error'], 500);
         }
-
-        return response()->json(['guru' => $guru], 200);
-    } catch (\Exception $e) {
-        return response()->json(['error' => 'Internal Server Error'], 500);
     }
-}
 
     public function addGuru(Request $req)
     {
