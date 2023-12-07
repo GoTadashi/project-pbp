@@ -8,6 +8,20 @@ use Carbon\Carbon;
 
 class controller_api_siswa extends Controller
 {
+    public function cari(Request $req)
+    {
+        try {
+            $cari = $req->input('cari');
+            $query = model_siswa::where('nisn', 'LIKE', "%$cari%")
+                ->orWhere('nama', 'LIKE', "%$cari%")
+                ->get();
+
+            return response()->json(['status' => 'success', 'data' => $query], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
+        }
+    }
+
     public function getSiswa()
     {
         try {
