@@ -96,6 +96,7 @@ class controller_api_raport extends Controller
                 'raport.id_guru',
                 'guru.nama as nama_guru',
                 'detail_raport.id_detail',
+                'matapelajaran.id_matapelajaran',
                 'matapelajaran.nama_matapelajaran',
                 'detail_raport.nilai',
                 'detail_raport.predikat',
