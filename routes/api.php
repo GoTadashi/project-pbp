@@ -39,6 +39,7 @@ Route::post('/update-matapelajaran', [App\Http\Controllers\controller_api_matape
 Route::get('/delete-matapelajaran/{id_matapelajaran}', [App\Http\Controllers\controller_api_matapelajaran::class, 'deleteMatapelajaran']);
 
 Route::get('/get-raport', [App\Http\Controllers\controller_api_raport::class, 'getRaport']);
+Route::get('/get-raport/{nis}', [App\Http\Controllers\controller_api_raport::class, 'getRaportByNIS']);
 Route::get('/get-raport-main', [App\Http\Controllers\controller_api_raport::class, 'getRaportMain']);
 Route::get('/get-raport-main/{nis}', [App\Http\Controllers\controller_api_raport::class, 'getRaportMainByNIS']);
 Route::post('/add-raport', [App\Http\Controllers\controller_api_raport::class, 'addRaport']);
