@@ -90,11 +90,10 @@ class controller_api_guru extends Controller
     {
         try {
             $id_guru = $req->id_guru;
-
             $req->validate([
                 'nip' => 'required',
                 'nama' => 'required',
-                'walikelas' => 'required',
+                'walikelas' => 'nullable',
                 'tempat_lahir' => 'required',
                 'tanggal_lahir' => 'required',
                 'jenis_kelamin' => 'required',
