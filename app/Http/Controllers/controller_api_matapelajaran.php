@@ -22,6 +22,31 @@ class controller_api_matapelajaran extends Controller
         }
     }
 
+    public function getById($id_matapelajaran)
+    {
+        try {
+            $matapelajaran = model_matapelajaran::find($id_matapelajaran);
+    
+            if (!$matapelajaran) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Data not found',
+                ], 404, [], JSON_PRETTY_PRINT); // 404 for not found
+            }
+    
+            return response()->json($matapelajaran, 200, [], JSON_PRETTY_PRINT);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error retrieving data',
+                'error' => $e->getMessage(),
+            ], 500, [], JSON_PRETTY_PRINT); // 500 for internal server error
+        }
+    }
+    
+    
+
+
     public function addMatapelajaran(Request $req)
     {
         try {
